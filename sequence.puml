@@ -1,0 +1,23 @@
+@startuml
+
+title Kubernetes Lifecycle
+
+actor User
+
+User -> Master: Create Cluster
+Master -> Node: Deploy kubelet and kubeadm
+Master --> Node: Join the cluster
+User -> Master: Deploy Application
+Master -> Node: Create Pods
+User -> Master: Scale
+Master -> Node: Scale Pods
+User -> Master: Update
+Master -> Node: Rolling update
+User -> Master: Monitor
+Master -> Node: Collect metrics and logs
+User -> Master: Maintenance
+Master -> Node: Upgrade, Backup, Patch
+User -> Master: Teardown
+Master -> Node: Drain and delete nodes
+
+@enduml
