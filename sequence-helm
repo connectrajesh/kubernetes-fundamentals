@@ -1,0 +1,25 @@
+@startuml
+title Automating GKE Cluster Provisioning and Microservice Deployment
+
+actor DevOpsEngineer
+
+DevOpsEngineer -> Terraform: Create GKE Cluster
+Terraform -> GKE: Provision and configure cluster
+DevOpsEngineer -> Terraform: Create Kubernetes Resources
+Terraform -> Master: Deploy kubelet, kubeadm and join the cluster
+DevOpsEngineer -> Docker: Build Microservice Image
+Docker -> DevOpsEngineer: Return Microservice Image
+DevOpsEngineer -> Helm: Package Microservice
+Helm -> Master: Deploy Microservice
+DevOpsEngineer -> Terraform: Scale
+Terraform -> Master: Scale Pods
+DevOpsEngineer -> Terraform: Update
+Terraform -> Master: Rolling update
+DevOpsEngineer -> Terraform: Monitor
+Terraform -> Master: Collect metrics and logs
+DevOpsEngineer -> Terraform: Maintenance
+Terraform -> Master: Upgrade, Backup, Patch
+DevOpsEngineer -> Terraform: Teardown
+Terraform -> Master: Drain and delete nodes
+
+@enduml
